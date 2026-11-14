@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragments.OnBoardingStatisticsFragment">
+
+    <ImageView
+        android:id="@+id/ivRouteComparison"
+        android:layout_width="match_parent"
+        android:layout_height="360dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/route_comparison_screen"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
+        android:background="@android:color/transparent"
+        android:contentDescription="" />
+
+    <!-- Heading Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@android:color/transparent">
+
+        <TextView
+            android:id="@+id/tvOnboardingTitle1"
+            style="@style/EcoRouteOnboardingTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/onboarding_title_line_1"
+            android:textAlignment="center"
+            android:background="@android:color/transparent" />
+
+        <TextView
+            android:id="@+id/tvOnboardingTitle2"
+            style="@style/EcoRouteOnboardingTitleHighlight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/onboarding_title_line_2"
+            android:textAlignment="center"
+            android:background="@android:color/transparent" />
+
+    </LinearLayout>
+
+    <!-- Description -->
+    <TextView
+        android:id="@+id/tvOnboardingDescription"
+        style="@style/EcoRouteBody"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:text="@string/onboarding_description"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:lineSpacingExtra="3dp"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
+        android:background="@android:color/transparent" />
+
+    <!-- Progress Indicators -->
+    <LinearLayout
+        android:id="@+id/onboardingProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="28dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:background="@android:color/transparent">
+
+        <View
+            android:layout_width="9dp"
+            android:layout_height="9dp"
+            android:layout_marginStart="3dp"
+            android:background="@drawable/progress_dot_active" />
+
+        <View
+            android:layout_width="9dp"
+            android:layout_height="9dp"
+            android:layout_marginStart="3dp"
+            android:background="@drawable/progress_dot_inactive" />
+
+
+    </LinearLayout>
+
+    <!-- Buttons Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:orientation="vertical"
+        android:background="@android:color/transparent">
+
+        <!-- Continue Button -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/statisticsFragmentContinueButton"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/btn_bg"
+            android:text="@string/continue_text"
+            android:textAppearance="@style/EcoRouteButtonText"
+            android:textAllCaps="false"
+            android:stateListAnimator="@null"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:minHeight="0dp"
+            android:minWidth="0dp"
+            app:backgroundTint="@null" />
+
+        <!-- Back Button -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/statisticsFragmentBackButton"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_button_secondary"
+            android:text="@string/back"
+            android:textAppearance="@style/EcoRouteButtonSecondaryText"
+            android:textAllCaps="false"
+            android:stateListAnimator="@null"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:minHeight="0dp"
+            android:minWidth="0dp"
+            app:backgroundTint="@null" />
+
+    </LinearLayout>
+
+</LinearLayout>

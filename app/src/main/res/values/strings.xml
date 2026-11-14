@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">EcoRoute</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="btn_get_started">Get Started</string>
+
+    <string name="skip">Skip</string>
+    
+    
+    <!--  Onboarding Statistics Fragment -->
+    <string name="onboarding_title_line_1">Breathe Cleaner on</string>
+    <string name="onboarding_title_line_2">Every Journey</string>
+
+    <string name="onboarding_description">Compare real-time AQI across paths and choose low-pollution streets tailored for walking, cycling, and daily commutes.</string>
+    <!-- Buttons -->
+    <string name="continue_text">Continue</string>
+    <string name="back">Back</string>
+
+
+    <!-- OnBoarding Privacy Fragment -->
+    <string name="privacy_title_line1">Trusted Air Data &amp;</string>
+    <string name="privacy_title_line2">Your Privacy First</string>
+    <string name="privacy_description">Scientific accuracy paired with strict data protection</string>
+
+    <!-- Cards Content -->
+    <string name="station_title">Verified Environmental Stations</string>
+    <string name="station_desc">Powered by EPA, CPCB, and certified urban AQI sensors updated every 15 minutes.</string>
+    <string name="badge_live_verified">LIVE VERIFIED</string>
+
+    <string name="privacy_card_title">End-to-End Location Privacy</string>
+    <string name="privacy_card_desc">Your home, work, and daily routes stay encrypted on-device and are never sold.</string>
+    <string name="badge_zero_tracking">ZERO TRACKING</string>
+
+    <string name="health_title">Health-Grade Guidance</string>
+    <string name="health_desc">WHO-aligned exposure thresholds built for runners, cyclists, and sensitive groups.</string>
+    <string name="badge_who_aligned">WHO ALIGNED</string>
+
+    <!-- Action Buttons -->
+    <string name="allow_location_continue">Allow Location &amp; Continue</string>
+    <string name="set_city_manually">Set City Manually Instead</string>
+    <string name="terms_footer">By continuing, you agree to our Privacy Policy &amp; Terms.</string>
+
+</resources>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/on_boarding_screen_1_bg"
+    tools:context=".ui.fragments.OnBoardingFragment1">
+
+    <!-- Continue Button -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_margin="20dp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/onBoardingFragmentGetStartedBtn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/btn_bg"
+        android:textAppearance="@style/EcoRouteButtonText"
+        android:textAllCaps="false"
+        android:elevation="3dp"
+        android:stateListAnimator="@null"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:text="@string/btn_get_started"
+        app:backgroundTint="@null" />
+
+</RelativeLayout>

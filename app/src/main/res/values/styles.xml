@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <!-- Logo -->
+    <style name="EcoRouteLogo">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_brand</item>
+    </style>
+
+    <!-- Skip -->
+    <style name="EcoRouteSkip">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_muted</item>
+    </style>
+
+    <!-- Main heading -->
+    <style name="EcoRouteOnboardingTitle">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <!-- Green highlighted heading -->
+    <style name="EcoRouteOnboardingTitleHighlight" parent="@style/EcoRouteOnboardingTitle">
+        <item name="android:textColor">@color/text_green</item>
+    </style>
+
+    <!-- Description -->
+    <style name="EcoRouteBody">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+
+    <!-- Primary button text -->
+    <style name="EcoRouteButtonText">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_white</item>
+    </style>
+
+    <!-- Secondary button text -->
+    <style name="EcoRouteButtonSecondaryText" parent="@style/EcoRouteButtonText">
+        <item name="android:textColor">@color/button_secondary_text</item>
+    </style>
+
+</resources>

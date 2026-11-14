@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/onBoardingStatisticsAndPrivacyContainer"
+    tools:context=".ui.fragments.OnBoardingFragment2">
+
+    <!-- Header: Logo + Skip -->
+    <RelativeLayout
+        android:id="@+id/logoContainerOnBoardingFragment2"
+        android:padding="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/onBoardingFragmentLogoContainer"
+            android:layout_width="160dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/eco_route_logo"
+            android:scaleType="centerCrop"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/app_name" />
+
+        <TextView
+            android:id="@+id/tvSkip"
+            style="@style/EcoRouteSkip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:text="@string/skip"
+            android:background="@android:color/transparent"
+
+            android:clickable="true"
+            android:focusable="true" />
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_below="@+id/logoContainerOnBoardingFragment2"
+        android:id="@+id/onBoardingContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</RelativeLayout>

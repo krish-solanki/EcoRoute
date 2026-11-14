@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="btn_color">#258F3B</color>
+
+    <color name="screen_2_bg">#E9F3EB</color>
+    <color name="screen_3_bg">#EBF4ED</color>
+
+    <!-- Text colors -->
+    <color name="text_primary">#183820</color>
+    <color name="text_brand">#215E26</color>
+    <color name="text_green">#2E7D32</color>
+    <color name="text_secondary">#54665A</color>
+    <color name="text_muted">#66796D</color>
+    <color name="text_white">#FFFFFF</color>
+
+    <!-- Button colors -->
+    <color name="button_primary">#2E7D32</color>
+    <color name="button_secondary">#FFFFFF</color>
+    <color name="button_secondary_text">#2E7D32</color>
+    <color name="button_stroke">#C6DACA</color>
+
+    <!-- Dividers and indicators -->
+    <color name="divider">#D6E5D9</color>
+    <color name="progress_inactive">#C6D8C9</color>
+
+    <!-- Route chart colors -->
+    <color name="route_clean">#2E7D32</color>
+    <color name="route_traffic">#FF8A32</color>
+    <color name="route_destination">#E53935</color>
+    <color name="route_hill">#A8D2B2</color>
+    <color name="route_building">#CFE5D5</color>
+
+</resources>
