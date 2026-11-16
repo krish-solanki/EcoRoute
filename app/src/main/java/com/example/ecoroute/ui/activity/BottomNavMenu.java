@@ -1,6 +1,7 @@
 package com.example.ecoroute.ui.activity;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import com.example.ecoroute.R;
 import com.example.ecoroute.core.helper.ScreenArrangement;
 import com.example.ecoroute.databinding.ActivityBottomNavMenuBinding;
 import com.example.ecoroute.ui.adapter.BottomNavigationAdapter;
+import com.example.ecoroute.ui.fragments.HomeFragment;
 
 public class BottomNavMenu extends AppCompatActivity {
     private ActivityBottomNavMenuBinding binding;
@@ -22,12 +24,15 @@ public class BottomNavMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
+        double latitude = getIntent().getDoubleExtra("latitude", 0.0);
+        double longitude = getIntent().getDoubleExtra("longitude", 0.0);
+
         binding = ActivityBottomNavMenuBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         ScreenArrangement.adjustStatusBarHeight(binding.statusBarBottomNavBarScreen);
 
-        adapter = new BottomNavigationAdapter(this);
+        adapter = new BottomNavigationAdapter(this , latitude , longitude);
         binding.viewPagerBottomNavView.setAdapter(adapter);
         binding.viewPagerBottomNavView.setUserInputEnabled(false);
 

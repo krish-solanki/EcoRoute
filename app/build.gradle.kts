@@ -60,4 +60,8 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
 
     implementation("com.google.android.gms:play-services-location:21.3.0")
+    implementation("com.airbnb.android:lottie:6.3.0")
+    implementation("com.github.Dimezis:BlurView:version-3.2.0")
+    implementation("com.android.volley:volley:1.2.1")
+    implementation("com.google.code.gson:gson:2.13.1")
 }

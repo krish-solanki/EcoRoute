@@ -46,7 +46,6 @@
 
     <!-- Home Screen -->
     <string name="location">Location</string>
-    <string name="default_city">Ahmedabad, India</string>
     <string name="change_location">Change location</string>
     <string name="notifications">Notifications</string>
 

@@ -43,6 +43,14 @@ public class OnBoardingFragment2 extends Fragment {
         }
     }
 
+    public void changeLogoContainerColor(boolean isLoading){
+        if (isLoading){
+            binding.logoContainerOnBoardingFragment2.setBackgroundResource(R.color.blur_overlay);
+        }else {
+            binding.logoContainerOnBoardingFragment2.setBackgroundResource(R.color.screen_3_bg);
+        }
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

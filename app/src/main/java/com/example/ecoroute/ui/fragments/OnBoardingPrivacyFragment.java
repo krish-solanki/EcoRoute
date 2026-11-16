@@ -1,11 +1,12 @@
 package com.example.ecoroute.ui.fragments;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
-import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,175 +17,155 @@ import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.IntentSenderRequest;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.ecoroute.R;
 import com.example.ecoroute.databinding.FragmentOnBoardingPrivacyBinding;
+import com.example.ecoroute.ui.activity.BottomNavMenu;
 import com.google.android.gms.common.api.ResolvableApiException;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationCallback;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationResult;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.location.LocationSettingsRequest;
-import com.google.android.gms.location.Priority;
+import com.google.android.gms.location.*;
 
 public class OnBoardingPrivacyFragment extends Fragment {
 
     private FragmentOnBoardingPrivacyBinding binding;
-
-    private ActivityResultLauncher<String[]> permissionLauncher;
-    private ActivityResultLauncher<IntentSenderRequest> gpsLauncher;
-
-    private FusedLocationProviderClient fusedLocationProviderClient;
+    private FusedLocationProviderClient fusedLocationClient;
+    private LocationRequest locationRequest;
     private LocationCallback locationCallback;
+    private ActivityResultLauncher<String[]> permissionLauncher;
+    private ActivityResultLauncher<IntentSenderRequest> settingsLauncher;
+    private final Handler handler = new Handler(Looper.getMainLooper());
+    private long animationStartTime;
+    private static final long MIN_ANIMATION_TIME = 800, LOCATION_TIMEOUT = 20000;
+    private Runnable timeoutRunnable;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        permissionLauncher = registerForActivityResult(
-                new ActivityResultContracts.RequestMultiplePermissions(),
-                result -> {
-                    if (isPermissionGranted()) {
-                        checkGPS();
-                    } else {
-                        Toast.makeText(requireContext(), "Location permission denied", Toast.LENGTH_SHORT).show();
-                    }
-                }
-        );
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity());
+        locationRequest = new LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 1000).setMinUpdateIntervalMillis(500).build();
 
-        gpsLauncher = registerForActivityResult(
-                new ActivityResultContracts.StartIntentSenderForResult(),
-                result -> {
-                    if (result.getResultCode() == Activity.RESULT_OK) {
-                        getFreshLocation();
-                    } else {
-                        Toast.makeText(requireContext(),"Please enable GPS to continue", Toast.LENGTH_SHORT).show();
-                    }
-                }
-        );
+        permissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(), result -> {
+            if (Boolean.TRUE.equals(result.get(Manifest.permission.ACCESS_FINE_LOCATION)) || Boolean.TRUE.equals(result.get(Manifest.permission.ACCESS_COARSE_LOCATION))) checkLocationSettings();
+            else finishLocationAnimation(() -> Toast.makeText(requireContext(), "Location permission denied", Toast.LENGTH_SHORT).show());
+        });
+
+        settingsLauncher = registerForActivityResult(new ActivityResultContracts.StartIntentSenderForResult(), result -> {
+            if (result.getResultCode() == android.app.Activity.RESULT_OK) startLocationUpdates();
+            else finishLocationAnimation(() -> Toast.makeText(requireContext(), "Please enable location", Toast.LENGTH_SHORT).show());
+        });
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentOnBoardingPrivacyBinding.inflate(inflater, container, false);
-
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity());
+        initializeBlur();
+        binding.btnAllowLocation.setOnClickListener(v -> startLocationFlow());
 
         Fragment parent = getParentFragment();
         if (parent instanceof OnBoardingFragment2) {
             ((OnBoardingFragment2) parent).changeSkipTextVisibility();
         }
-
-        binding.btnAllowLocation.setOnClickListener(v -> requestLocationPermission());
         return binding.getRoot();
     }
 
-    private void requestLocationPermission() {
+    private void initializeBlur() {
+        binding.blurViewPrivacyFragment.setupWith(binding.blurTarget).setBlurRadius(8f).setBlurAutoUpdate(true);
+        binding.blurViewPrivacyFragment.setOverlayColor(ContextCompat.getColor(requireContext(), R.color.blur_overlay));    }
 
-        if (isPermissionGranted()) {
-            checkGPS();
-        } else {
-            permissionLauncher.launch(new String[]{
-                    Manifest.permission.ACCESS_FINE_LOCATION,
-                    Manifest.permission.ACCESS_COARSE_LOCATION
-            });
-        }
+    private void startLocationFlow() {
+        showLocationAnimation();
+        if (hasLocationPermission()) checkLocationSettings();
+        else permissionLauncher.launch(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION});
     }
 
-    private boolean isPermissionGranted() {
-        return ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED ||
-                ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED;
+    private boolean hasLocationPermission() {
+        return ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED;
     }
 
-    private void checkGPS() {
-        LocationRequest request = new LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 1000).build();
-
-        LocationSettingsRequest settingsRequest = new LocationSettingsRequest.Builder()
-                        .addLocationRequest(request)
-                        .setAlwaysShow(true)
-                        .build();
-
-        LocationServices.getSettingsClient(requireActivity())
-                .checkLocationSettings(settingsRequest)
-                .addOnSuccessListener(response -> getFreshLocation())
-                .addOnFailureListener(exception -> {
-
-                    if (exception instanceof ResolvableApiException) {
+    private void checkLocationSettings() {
+        LocationSettingsRequest request = new LocationSettingsRequest.Builder().addLocationRequest(locationRequest).setAlwaysShow(true).build();
+        LocationServices.getSettingsClient(requireActivity()).checkLocationSettings(request)
+                .addOnSuccessListener(response -> startLocationUpdates())
+                .addOnFailureListener(e -> {
+                    if (e instanceof ResolvableApiException) {
                         try {
-                            IntentSenderRequest intentRequest = new IntentSenderRequest.Builder(
-                                            ((ResolvableApiException) exception).getResolution())
-                                            .build();
-
-                            gpsLauncher.launch(intentRequest);
-
-                        } catch (Exception e) {
-                            Log.e("LocationDebug", "GPS dialog error", e);
+                            settingsLauncher.launch(new IntentSenderRequest.Builder(((ResolvableApiException) e).getResolution()).build());
+                        } catch (Exception ex) {
+                            finishLocationAnimation(() -> Toast.makeText(requireContext(), "Unable to open location settings", Toast.LENGTH_SHORT).show());
                         }
-                    } else {
-                        Toast.makeText(requireContext(), "Unable to check GPS settings", Toast.LENGTH_SHORT).show();
-                    }
+                    } else finishLocationAnimation(() -> Toast.makeText(requireContext(), "Location settings unavailable", Toast.LENGTH_SHORT).show());
                 });
     }
 
-    @SuppressLint("MissingPermission")
-    private void getFreshLocation() {
-        if (!isPermissionGranted()) return;
+    private void startLocationUpdates() {
+        if (!hasLocationPermission()) { finishLocationAnimation(null); return; }
 
-        Toast.makeText(requireContext() , "Fetching your location...", Toast.LENGTH_SHORT).show();
-
-        LocationRequest request = new LocationRequest.Builder(
-                Priority.PRIORITY_HIGH_ACCURACY, 1000)
-                .setMinUpdateIntervalMillis(500)
-                .setMaxUpdates(1)
-                .build();
+        timeoutRunnable = () -> finishLocationAnimation(() -> Toast.makeText(requireContext(), "Location request timed out", Toast.LENGTH_SHORT).show());
+        handler.postDelayed(timeoutRunnable, LOCATION_TIMEOUT);
 
         locationCallback = new LocationCallback() {
             @Override
-            public void onLocationResult(@NonNull LocationResult result) {
-                Location location = result.getLastLocation();
-                if (location != null) {
-                    showCoordinates(location);
-                } else {
-                    Toast.makeText(requireContext(), "Location not available. Try again.", Toast.LENGTH_LONG).show();
-                }
-
-                fusedLocationProviderClient.removeLocationUpdates(this);
-                locationCallback = null;
+            public void onLocationResult(LocationResult result) {
+                Location location = result == null ? null : result.getLastLocation();
+                if (location == null) return;
+                stopLocationUpdates();
+                finishLocationAnimation(() -> {
+                    Intent intent = new Intent(requireActivity(), BottomNavMenu.class);
+                    intent.putExtra("latitude", location.getLatitude());
+                    intent.putExtra("longitude", location.getLongitude());
+                    startActivity(intent);
+                    requireActivity().finish();
+                });
             }
         };
 
-        fusedLocationProviderClient.requestLocationUpdates(request, locationCallback, Looper.getMainLooper())
-                .addOnFailureListener(e -> {
-                    Log.e("LocationDebug", "Location request failed", e);
-
-                    if (isAdded()) {
-                        Toast.makeText(requireContext(), "Location error: " + e.getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                });
+        try {
+            fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper());
+        } catch (SecurityException e) { finishLocationAnimation(null); }
     }
 
-    private void showCoordinates(Location location) {
-        double latitude = location.getLatitude();
-        double longitude = location.getLongitude();
-        Toast.makeText(requireContext(), "Latitude: " + latitude + "\nLongitude: " + longitude, Toast.LENGTH_LONG).show();
+    private void showLocationAnimation() {
+        if (binding == null) return;
+        animationStartTime = System.currentTimeMillis();
+        binding.blurViewPrivacyFragment.setVisibility(View.VISIBLE);
+        binding.loaderPrivacyFragment.setVisibility(View.VISIBLE);
+        changeParentLogoColor(true);
+        binding.blurViewPrivacyFragment.bringToFront();
+        binding.loaderPrivacyFragment.bringToFront();
+        binding.loaderPrivacyFragment.playAnimation();
+    }
 
-        Log.d("LocationCoordinates", "Latitude: " + latitude + ", Longitude: " + longitude);
+    private void finishLocationAnimation(Runnable action) {
+        long delay = Math.max(0, MIN_ANIMATION_TIME - (System.currentTimeMillis() - animationStartTime));
+        handler.postDelayed(() -> {
+            if (binding != null) {
+                binding.loaderPrivacyFragment.cancelAnimation();
+                binding.loaderPrivacyFragment.setVisibility(View.GONE);
+                binding.blurViewPrivacyFragment.setVisibility(View.GONE);
+            }
+            changeParentLogoColor(false);
+            if (action != null && isAdded()) action.run();
+        }, delay);
+    }
 
-        Log.d("LocationDebug", "Accuracy: " + location.getAccuracy() + " metres");
+    private void stopLocationUpdates() {
+        if (timeoutRunnable != null) { handler.removeCallbacks(timeoutRunnable); timeoutRunnable = null; }
+        if (locationCallback != null) { fusedLocationClient.removeLocationUpdates(locationCallback); locationCallback = null; }
+    }
+
+    private void changeParentLogoColor(boolean isLoading) {
+        if (getParentFragment() instanceof OnBoardingFragment2) {
+            ((OnBoardingFragment2) getParentFragment()).changeLogoContainerColor(isLoading);
+        }
     }
 
     @Override
     public void onDestroyView() {
-
-        if (fusedLocationProviderClient != null && locationCallback != null) {
-            fusedLocationProviderClient.removeLocationUpdates(locationCallback);
-            locationCallback = null;
-        }
-
+        stopLocationUpdates();
+        handler.removeCallbacksAndMessages(null);
+        if (binding != null) binding.loaderPrivacyFragment.cancelAnimation();
         binding = null;
         super.onDestroyView();
     }

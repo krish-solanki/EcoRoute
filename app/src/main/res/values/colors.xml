@@ -5,6 +5,8 @@
 
     <color name="btn_color">#258F3B</color>
 
+    <color name="blur_overlay">#20FFFFFF</color>
+
     <color name="screen_2_bg">#E9F3EB</color>
     <color name="screen_3_bg">#EBF4ED</color>
 
