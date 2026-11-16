@@ -26,6 +26,9 @@ android {
                 listOf(
                     "src/main/res",
                     "src/main/res/drawables/onBoardingScreen",
+                    "src/main/res/drawables/homeScreen",
+                    "src/main/res/drawables/bottomNavView",
+
                     "src/main/res/layouts/activities",
                     "src/main/res/layouts/fragments",
                     "src/main/res/layouts/dialogs"
@@ -55,4 +58,6 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.espresso.core)
     androidTestImplementation(libs.ext.junit)
+
+    implementation("com.google.android.gms:play-services-location:21.3.0")
 }

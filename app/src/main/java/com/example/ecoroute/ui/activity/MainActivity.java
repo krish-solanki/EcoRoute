@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(binding.getRoot());
 
-//        ScreenArrangement.adjustNavigationBarHeight(binding.viewForStatusBarMainActivity);
+//        ScreenArrangement.adjustStatusBarHeight(binding.viewForStatusBarMainActivity);
         ScreenArrangement.adjustNavigationBarHeight(binding.viewForNavigationBarMainActivity);
         getSupportFragmentManager().beginTransaction()
                 .replace(binding.onBoardingScreenFragmentContainer.getId(), new OnBoardingFragment1())

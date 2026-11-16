@@ -1,0 +1,16 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="960"
+    android:viewportHeight="960">
+
+    <!-- Fully filled green pin -->
+    <path
+        android:fillColor="#258F3B"
+        android:pathData="M480,880Q319,743 239.5,625.5Q160,508 160,408Q160,258 256.5,169Q353,80 480,80Q607,80 703.5,169Q800,258 800,408Q800,508 720.5,625.5Q641,743 480,880Z"/>
+
+
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M557,471Q592,436 592,400Q592,364 557,329Q522,294 480,294Q438,294 403,329Q368,364 368,400Q368,436 403,471Q438,506 480,506Q522,506 557,471Z"/>
+</vector>

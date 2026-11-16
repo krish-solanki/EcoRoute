@@ -33,4 +33,20 @@
     <color name="route_hill">#A8D2B2</color>
     <color name="route_building">#CFE5D5</color>
 
+    <color name="home_background">#F8FAF8</color>
+    <color name="card_background">#FFFFFF</color>
+
+    <color name="aqi_moderate_bg">#FFE28A</color>
+    <color name="aqi_moderate_text">#493A13</color>
+
+    <color name="aqi_good_bg">#CDEBBE</color>
+    <color name="aqi_good_text">#245C28</color>
+
+    <color name="tip_background">#DDF1E4</color>
+
+    <color name="aqi_gauge_green">#42A64D</color>
+    <color name="aqi_gauge_yellow">#FFC928</color>
+    <color name="aqi_gauge_orange">#FF8A24</color>
+    <color name="aqi_gauge_red">#E53935</color>
+
 </resources>

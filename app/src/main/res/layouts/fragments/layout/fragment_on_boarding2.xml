@@ -9,10 +9,17 @@
     android:id="@+id/onBoardingStatisticsAndPrivacyContainer"
     tools:context=".ui.fragments.OnBoardingFragment2">
 
+    <View
+        android:id="@+id/statusBarOnBoardingFragment2"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"/>
+
     <!-- Header: Logo + Skip -->
     <RelativeLayout
         android:id="@+id/logoContainerOnBoardingFragment2"
-        android:padding="20dp"
+        android:layout_below="@+id/statusBarOnBoardingFragment2"
+        android:paddingHorizontal="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

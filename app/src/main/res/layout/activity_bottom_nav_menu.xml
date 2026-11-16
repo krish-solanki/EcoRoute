@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:layout_alignParentTop="true"
+        android:id="@+id/statusBarBottomNavBarScreen"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"/>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPagerBottomNavView"
+        android:layout_below="@+id/statusBarBottomNavBarScreen"
+        android:layout_above="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.Design.BottomNavigationView"
+        android:layout_alignParentBottom="true"
+        android:elevation="10dp"
+        android:background="@android:color/white"
+        app:menu="@menu/bottom_menu"
+        app:itemIconTint="@color/selected_nav_color"
+        app:itemTextColor="@color/selected_nav_color"
+        app:itemRippleColor="@null"
+        app:itemIconSize="26dp"
+        app:labelVisibilityMode="labeled"
+        app:elevation="8dp" />
+
+</RelativeLayout>

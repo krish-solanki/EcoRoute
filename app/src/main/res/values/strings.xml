@@ -5,8 +5,8 @@
     <string name="btn_get_started">Get Started</string>
 
     <string name="skip">Skip</string>
-    
-    
+
+
     <!--  Onboarding Statistics Fragment -->
     <string name="onboarding_title_line_1">Breathe Cleaner on</string>
     <string name="onboarding_title_line_2">Every Journey</string>
@@ -39,5 +39,41 @@
     <string name="allow_location_continue">Allow Location &amp; Continue</string>
     <string name="set_city_manually">Set City Manually Instead</string>
     <string name="terms_footer">By continuing, you agree to our Privacy Policy &amp; Terms.</string>
+    <string name="menu_title_home">Home</string>
+    <string name="menu_title_map">Map</string>
+    <string name="menu_title_history">History</string>
+    <string name="menu_title_profile">Profile</string>
+
+    <!-- Home Screen -->
+    <string name="location">Location</string>
+    <string name="default_city">Ahmedabad, India</string>
+    <string name="change_location">Change location</string>
+    <string name="notifications">Notifications</string>
+
+    <string name="current_air_quality">Current Air Quality</string>
+    <string name="aqi_moderate">Moderate</string>
+    <string name="aqi_good">Good</string>
+    <string name="aqi_us">AQI (US)</string>
+    <string name="aqi_updated">2 May 2025, 09:30 AM</string>
+    <string name="microgram_unit">µg/m³</string>
+
+    <string name="favorite_routes">Your Favorite Routes</string>
+    <string name="see_all">See All</string>
+
+    <string name="home_route">Home route</string>
+    <string name="home_to_work">Home to Work</string>
+    <string name="home_work_details">6.4 km • 20 min</string>
+    <string name="route_aqi_65">AQI <font color="#E5A51B">65</font></string>
+
+    <string name="running_route">Running route</string>
+    <string name="morning_run">Morning Run</string>
+    <string name="morning_run_details">3.2 km • 30 min</string>
+    <string name="route_aqi_42">AQI <font color="#2E7D32">42</font></string>
+
+    <string name="more_options">More options</string>
+
+    <string name="tip_title">Tip for You 🌿</string>
+    <string name="tip_description">Air quality is better than yesterday. Great day for outdoor activities!</string>
+    <string name="earth_plant_illustration">Earth and plant illustration</string>
 
 </resources>

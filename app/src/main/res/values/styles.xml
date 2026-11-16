@@ -50,4 +50,113 @@
         <item name="android:textColor">@color/button_secondary_text</item>
     </style>
 
+
+    <!-- Home Location -->
+    <style name="HomeLocationText">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <!-- Section Heading -->
+    <style name="HomeSectionTitle">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <!-- AQI Value -->
+    <style name="HomeAQIValue">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">46sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_green</item>
+    </style>
+
+    <!-- AQI Status -->
+    <style name="HomeAQIStatus">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/aqi_moderate_text</item>
+        <item name="android:paddingHorizontal">9dp</item>
+        <item name="android:paddingVertical">4dp</item>
+    </style>
+
+    <!-- Small Text -->
+    <style name="HomeSmallText">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+
+    <!-- Pollutant Labels -->
+    <style name="HomePollutantLabel">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+
+    <!-- Pollutant Values -->
+    <style name="HomePollutantValue">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">21sp</item>
+        <item name="android:textColor">@color/text_green</item>
+        <item name="android:layout_marginTop">5dp</item>
+    </style>
+
+    <!-- Units -->
+    <style name="HomeUnitText">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">@color/text_muted</item>
+    </style>
+
+    <!-- See All -->
+    <style name="HomeSeeAll">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_green</item>
+    </style>
+
+    <!-- Route Title -->
+    <style name="HomeRouteTitle">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <!-- Route Details -->
+    <style name="HomeRouteDetails">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+
+    <!-- Route AQI -->
+    <style name="HomeRouteAQI">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+
+    <!-- Tip Title -->
+    <style name="HomeTipTitle">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_brand</item>
+    </style>
+
+    <!-- Tip Description -->
+    <style name="HomeTipDescription">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:lineSpacingExtra">5dp</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
 </resources>

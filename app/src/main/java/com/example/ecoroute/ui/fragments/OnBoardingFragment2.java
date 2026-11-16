@@ -1,20 +1,16 @@
 package com.example.ecoroute.ui.fragments;
 
-import android.graphics.Color;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import android.provider.CalendarContract;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.example.ecoroute.R;
 import com.example.ecoroute.core.helper.ScreenArrangement;
-import com.example.ecoroute.databinding.FragmentOnBoarding1Binding;
 import com.example.ecoroute.databinding.FragmentOnBoarding2Binding;
 
 public class OnBoardingFragment2 extends Fragment {
@@ -32,6 +28,8 @@ public class OnBoardingFragment2 extends Fragment {
             binding.onBoardingStatisticsAndPrivacyContainer.setBackgroundColor(
                     ContextCompat.getColor(requireContext(), R.color.screen_2_bg)
             );
+
+            ScreenArrangement.adjustStatusBarHeight(binding.statusBarOnBoardingFragment2);
         }
 
         return binding.getRoot();
