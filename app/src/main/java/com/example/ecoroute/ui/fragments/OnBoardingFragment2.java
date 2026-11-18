@@ -1,5 +1,6 @@
 package com.example.ecoroute.ui.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,8 @@ import androidx.fragment.app.Fragment;
 import com.example.ecoroute.R;
 import com.example.ecoroute.core.helper.ScreenArrangement;
 import com.example.ecoroute.databinding.FragmentOnBoarding2Binding;
+import com.example.ecoroute.ui.activity.BottomNavMenu;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class OnBoardingFragment2 extends Fragment {
     private FragmentOnBoarding2Binding binding;
@@ -31,6 +34,14 @@ public class OnBoardingFragment2 extends Fragment {
 
             ScreenArrangement.adjustStatusBarHeight(binding.statusBarOnBoardingFragment2);
         }
+
+        binding.tvSkip.setOnClickListener(v -> {
+            if (binding.tvSkip.getVisibility() == View.VISIBLE){
+                Intent intent = new Intent(requireActivity(), BottomNavMenu.class);
+                startActivity(intent);
+                requireActivity().finish();
+            }
+        });
 
         return binding.getRoot();
     }

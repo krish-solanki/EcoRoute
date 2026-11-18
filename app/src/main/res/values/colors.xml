@@ -41,14 +41,28 @@
     <color name="aqi_moderate_bg">#FFE28A</color>
     <color name="aqi_moderate_text">#493A13</color>
 
-    <color name="aqi_good_bg">#CDEBBE</color>
-    <color name="aqi_good_text">#245C28</color>
 
     <color name="tip_background">#DDF1E4</color>
 
-    <color name="aqi_gauge_green">#42A64D</color>
-    <color name="aqi_gauge_yellow">#FFC928</color>
-    <color name="aqi_gauge_orange">#FF8A24</color>
-    <color name="aqi_gauge_red">#E53935</color>
+    <color name="aqi_category_good">#CDEBBE</color>
+    <color name="aqi_category_satisfactory">#B8E0A5</color>
+    <color name="aqi_category_moderate">#FFE28A</color>
+    <color name="aqi_category_poor">#FFB38A</color>
+    <color name="aqi_category_very_poor">#F28B82</color>
+    <color name="aqi_category_severe">#D96B70</color>
+
+    <color name="history_green">#167C32</color>
+    <color name="history_green_light">#D4EBD1</color>
+    <color name="history_red">#EF4444</color>
+    <color name="history_search_border">#C6DACA</color>
+    <color name="history_card_border">#E4EEE5</color>
+
+    <color name="profile_header_green">#167C32</color>
+    <color name="profile_card_background">#FFFFFF</color>
+    <color name="profile_icon_background">#E8F4EA</color>
+    <color name="profile_divider">#E4EEE5</color>
+    <color name="profile_text_secondary">#66796D</color>
+    <color name="profile_logout">#E53935</color>
+
 
 </resources>

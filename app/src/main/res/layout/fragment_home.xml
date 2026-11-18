@@ -1,509 +1,553 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/swipeRefreshLayoutHomeFragment"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/home_background"
-    android:fillViewport="true"
-    android:clipToPadding="false">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingBottom="20dp">
+        android:layout_height="match_parent"
+        android:background="@color/home_background"
+        android:fillViewport="true"
+        android:clipToPadding="false">
 
-        <!-- Location Header -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingHorizontal="16dp">
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/ic_location"
-                android:contentDescription="@string/location" />
-
-            <TextView
-                android:id="@+id/current_city_state_textview"
-                style="@style/HomeLocationText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:text="Select City"/>
-
-            <ImageView
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:layout_marginStart="5dp"
-                android:src="@drawable/ic_arrow_down"
-                android:contentDescription="@string/change_location" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="20dp">
 
             <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1" />
+                android:id="@+id/viewStatusBarHomeFragment"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"/>
 
-            <ImageView
-                android:id="@+id/ivNotification"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_notification"
-                android:contentDescription="@string/notifications" />
-
-        </LinearLayout>
-
-        <!-- Current Air Quality Card -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="12dp"
-            app:cardBackgroundColor="@color/card_background"
-            app:cardCornerRadius="18dp"
-            app:cardElevation="3dp">
-
+            <!-- Location Header -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="15dp">
+                android:layout_height="56dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="16dp">
 
-                <TextView
-                    style="@style/HomeSectionTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/current_air_quality" />
-
-                <!-- AQI Score and Gauge -->
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:id="@+id/location_selector"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:clickable="true"
+                    android:focusable="true">
 
-                    <LinearLayout
-                        android:layout_width="0dp"
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_location"
+                        android:contentDescription="@string/location" />
+
+                    <TextView
+                        android:id="@+id/currentCityStateTextview"
+                        style="@style/HomeLocationText"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:layout_marginStart="6dp"
+                        android:text="Select City" />
 
-                        <TextView
-                            android:id="@+id/aqi_textview"
-                            style="@style/HomeAQIValue"
-                            android:layout_width="wrap_content"
-                            android:layout_height="67dp"
-                            android:text="65" />
-
-                        <TextView
-                            android:id="@+id/aqi_status_textview"
-                            style="@style/HomeAQIStatus"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:background="@drawable/bg_aqi_moderate"
-                            android:text="@string/aqi_moderate" />
-
-                        <TextView
-                            style="@style/HomeSmallText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="9dp"
-                            android:text="@string/aqi_us" />
-
-                        <TextView
-                            android:id="@+id/time_textview"
-                            style="@style/HomeSmallText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:text="@string/aqi_updated" />
-
-                    </LinearLayout>
-
-                    <com.example.ecoroute.core.helper.AQIGaugeView
-                        android:id="@+id/aqiGauge"
-                        android:layout_width="160dp"
-                        android:layout_height="125dp" />
-
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_marginStart="5dp"
+                        android:src="@drawable/ic_arrow_down"
+                        android:contentDescription="@string/change_location" />
                 </LinearLayout>
 
                 <View
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="1dp"
-                    android:layout_marginTop="13dp"
-                    android:background="@color/divider" />
+                    android:layout_weight="1" />
 
-                <!-- Pollutant Values -->
-                <LinearLayout
+                <ImageView
+                    android:id="@+id/ivNotification"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_notification"
+                    android:contentDescription="@string/notifications" />
+
+            </LinearLayout>
+
+            <!-- AQI Cards -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!-- Actual AQI Card -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardViewAqiHomeFragment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:orientation="horizontal">
+                    android:layout_marginHorizontal="12dp"
+                    app:cardBackgroundColor="@color/card_background"
+                    app:cardCornerRadius="14dp"
+                    app:cardElevation="2dp"
+                    app:cardUseCompatPadding="true">
 
-                    <!-- PM2.5 -->
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:padding="15dp">
 
                         <TextView
-                            style="@style/HomePollutantLabel"
+                            style="@style/HomeSectionTitle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="PM2.5" />
+                            android:text="@string/current_air_quality" />
 
-                        <TextView
-                            android:id="@+id/PM25_data_textview"
-                            style="@style/HomePollutantValue"
-                            android:layout_width="wrap_content"
+                        <!-- AQI Score and Gauge -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="25" />
+                            android:layout_marginTop="10dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
 
-                        <TextView
-                            style="@style/HomeUnitText"
-                            android:layout_width="wrap_content"
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/aqi_textview"
+                                    style="@style/HomeAQIValue"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="67dp"
+                                    android:text="65" />
+
+                                <LinearLayout
+                                    android:id="@+id/bg_status_textview"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/aqi_category_moderate">
+
+                                    <TextView
+                                        android:id="@+id/aqi_status_textview"
+                                        style="@style/HomeAQIStatus"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/aqi_moderate" />
+
+                                </LinearLayout>
+
+                                <TextView
+                                    style="@style/HomeSmallText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="9dp"
+                                    android:text="@string/aqi_us" />
+
+                                <TextView
+                                    android:id="@+id/time_textview"
+                                    style="@style/HomeSmallText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:text="@string/aqi_updated" />
+
+                            </LinearLayout>
+
+                            <com.example.ecoroute.core.helper.AQIGaugeView
+                                android:id="@+id/aqiGauge"
+                                android:layout_width="160dp"
+                                android:layout_height="125dp" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="13dp"
+                            android:background="@color/divider" />
+
+                        <!-- Pollutant Values -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/microgram_unit" />
+                            android:layout_marginTop="12dp"
+                            android:orientation="horizontal">
+
+                            <!-- PM2.5 -->
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    style="@style/HomePollutantLabel"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="PM2.5" />
+
+                                <TextView
+                                    android:id="@+id/PM25_data_textview"
+                                    style="@style/HomePollutantValue"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="25" />
+
+                                <TextView
+                                    style="@style/HomeUnitText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/microgram_unit" />
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="55dp"
+                                android:background="@color/divider" />
+
+                            <!-- PM10 -->
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    style="@style/HomePollutantLabel"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="PM10" />
+
+                                <TextView
+                                    android:id="@+id/PM10_data_textview"
+                                    style="@style/HomePollutantValue"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="48" />
+
+                                <TextView
+                                    style="@style/HomeUnitText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/microgram_unit" />
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="55dp"
+                                android:background="@color/divider" />
+
+                            <!-- NO2 -->
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    style="@style/HomePollutantLabel"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="NO₂" />
+
+                                <TextView
+                                    android:id="@+id/NO2_data_textview"
+                                    style="@style/HomePollutantValue"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="18" />
+
+                                <TextView
+                                    style="@style/HomeUnitText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/microgram_unit" />
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="55dp"
+                                android:background="@color/divider" />
+
+                            <!-- O3 -->
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    style="@style/HomePollutantLabel"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="O₃" />
+
+                                <TextView
+                                    android:id="@+id/O3_data_textview"
+                                    style="@style/HomePollutantValue"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="32" />
+
+                                <TextView
+                                    style="@style/HomeUnitText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/microgram_unit" />
+                            </LinearLayout>
+                        </LinearLayout>
                     </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="55dp"
-                        android:background="@color/divider" />
+                <!-- Skeleton Card: separate XML -->
+                <include
+                    android:id="@+id/cardViewAqiSkeletonHomeFragment"
+                    layout="@layout/view_aqi_skeleton"
+                    android:visibility="gone" />
 
-                    <!-- PM10 -->
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
+            </FrameLayout>
 
-                        <TextView
-                            style="@style/HomePollutantLabel"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="PM10" />
-
-                        <TextView
-                            android:id="@+id/PM10_data_textview"
-                            style="@style/HomePollutantValue"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="48" />
-
-                        <TextView
-                            style="@style/HomeUnitText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/microgram_unit" />
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="55dp"
-                        android:background="@color/divider" />
-
-                    <!-- NO2 -->
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            style="@style/HomePollutantLabel"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="NO₂" />
-
-                        <TextView
-                            android:id="@+id/NO2_data_textview"
-                            style="@style/HomePollutantValue"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="18" />
-
-                        <TextView
-                            style="@style/HomeUnitText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/microgram_unit" />
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="55dp"
-                        android:background="@color/divider" />
-
-                    <!-- O3 -->
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            style="@style/HomePollutantLabel"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="O₃" />
-
-                        <TextView
-                            android:id="@+id/O3_data_textview"
-                            style="@style/HomePollutantValue"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="32" />
-
-                        <TextView
-                            style="@style/HomeUnitText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/microgram_unit" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- Favorite Routes Heading -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
-            android:layout_marginHorizontal="16dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                style="@style/HomeSectionTitle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/favorite_routes" />
-
-            <TextView
-                android:id="@+id/tvSeeAllRoutes"
-                style="@style/HomeSeeAll"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/see_all" />
-
-        </LinearLayout>
-
-        <!-- Home to Work Route -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginTop="12dp"
-            app:cardBackgroundColor="@color/card_background"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="2dp">
-
+            <!-- Favorite Routes Heading -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="85dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:layout_marginHorizontal="16dp"
                 android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingHorizontal="14dp">
-
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/ic_bottom_nav_home"
-                    android:contentDescription="@string/home_route" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="22dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        style="@style/HomeRouteTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/home_to_work" />
-
-                    <TextView
-                        style="@style/HomeRouteDetails"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:text="@string/home_work_details" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:orientation="vertical">
-
-                    <TextView
-                        style="@style/HomeRouteAQI"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/route_aqi_65" />
-
-                    <TextView
-                        style="@style/HomeAQIStatus"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:background="@drawable/bg_aqi_moderate"
-                        android:text="@string/aqi_moderate" />
-
-                </LinearLayout>
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginStart="10dp"
-                    android:src="@drawable/ic_more_vertical"
-                    android:contentDescription="@string/more_options" />
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- Morning Run Route -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginTop="10dp"
-            app:cardBackgroundColor="@color/card_background"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="2dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="85dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingHorizontal="14dp">
-
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/ic_running"
-                    android:contentDescription="@string/running_route" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="22dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        style="@style/HomeRouteTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/morning_run" />
-
-                    <TextView
-                        style="@style/HomeRouteDetails"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:text="@string/morning_run_details" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:orientation="vertical">
-
-                    <TextView
-                        style="@style/HomeRouteAQI"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/route_aqi_42" />
-
-                    <TextView
-                        style="@style/HomeAQIStatus"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:background="@drawable/bg_aqi_good"
-                        android:text="@string/aqi_good" />
-
-                </LinearLayout>
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginStart="10dp"
-                    android:src="@drawable/ic_more_vertical"
-                    android:contentDescription="@string/more_options" />
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- Tip Card -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginTop="20dp"
-            app:cardBackgroundColor="@color/tip_background"
-            app:cardCornerRadius="18dp"
-            app:cardElevation="0dp">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="118dp"
-                android:padding="15dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:orientation="vertical">
-
-                    <TextView
-                        style="@style/HomeTipTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/tip_title" />
-
-                    <TextView
-                        style="@style/HomeTipDescription"
-                        android:layout_width="230dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:text="@string/tip_description" />
-
-                </LinearLayout>
+                android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="85dp"
+                    style="@style/HomeSectionTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/favorite_routes" />
+
+                <TextView
+                    android:id="@+id/tvSeeAllRoutes"
+                    style="@style/HomeSeeAll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/see_all" />
+
+            </LinearLayout>
+
+            <!-- Home to Work Route -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="12dp"
+                app:cardBackgroundColor="@color/card_background"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="85dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:gravity="center"
-                    android:text="🌱🌍"
-                    android:textSize="38sp"
-                    android:contentDescription="@string/earth_plant_illustration" />
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="14dp">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_bottom_nav_home"
+                        android:contentDescription="@string/home_route" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="22dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/HomeRouteTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/home_to_work" />
+
+                        <TextView
+                            style="@style/HomeRouteDetails"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="@string/home_work_details" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/HomeRouteAQI"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/route_aqi_65" />
+
+                        <TextView
+                            style="@style/HomeAQIStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:background="@drawable/bg_aqi_moderate"
+                            android:text="@string/aqi_moderate" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="10dp"
+                        android:src="@drawable/ic_more_vertical"
+                        android:contentDescription="@string/more_options" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Morning Run Route -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="10dp"
+                app:cardBackgroundColor="@color/card_background"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="85dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="14dp">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_running"
+                        android:contentDescription="@string/running_route" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="22dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/HomeRouteTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/morning_run" />
+
+                        <TextView
+                            style="@style/HomeRouteDetails"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="@string/morning_run_details" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/HomeRouteAQI"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/route_aqi_42" />
+
+                        <TextView
+                            style="@style/HomeAQIStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:background="@drawable/bg_aqi_good"
+                            android:text="@string/aqi_good" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="10dp"
+                        android:src="@drawable/ic_more_vertical"
+                        android:contentDescription="@string/more_options" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <RelativeLayout
+                android:gravity="bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="12dp"
+                    app:cardBackgroundColor="@color/tip_background"
+                    app:cardCornerRadius="18dp"
+                    app:cardElevation="0dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="118dp"
+                        android:padding="15dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/HomeTipTitle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/tip_title" />
+
+                            <TextView
+                                style="@style/HomeTipDescription"
+                                android:layout_width="230dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:text="@string/tip_description" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="85dp"
+                            android:layout_height="85dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentBottom="true"
+                            android:gravity="center"
+                            android:text="🌱🌍"
+                            android:textSize="38sp"
+                            android:contentDescription="@string/earth_plant_illustration" />
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
 
             </RelativeLayout>
-        </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
 
-    </LinearLayout>
-</ScrollView>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

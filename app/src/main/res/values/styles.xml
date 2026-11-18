@@ -80,9 +80,7 @@
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/aqi_moderate_text</item>
-        <item name="android:paddingHorizontal">9dp</item>
-        <item name="android:paddingVertical">4dp</item>
-    </style>
+     </style>
 
     <!-- Small Text -->
     <style name="HomeSmallText">
@@ -157,6 +155,33 @@
         <item name="android:textSize">12sp</item>
         <item name="android:lineSpacingExtra">5dp</item>
         <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <style name="ProfileTitle" parent="HomeSectionTitle">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <style name="ProfileName">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <style name="ProfileSubtitle">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/profile_text_secondary</item>
+    </style>
+
+    <style name="ProfileMenuTitle">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <style name="ProfileMenuDescription">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/profile_text_secondary</item>
     </style>
 
 </resources>

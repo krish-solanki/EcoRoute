@@ -28,10 +28,14 @@ android {
                     "src/main/res/drawables/onBoardingScreen",
                     "src/main/res/drawables/homeScreen",
                     "src/main/res/drawables/bottomNavView",
+                    "src/main/res/drawables/historyScreen",
+
 
                     "src/main/res/layouts/activities",
+                    "src/main/res/layouts/custom_layouts",
                     "src/main/res/layouts/fragments",
-                    "src/main/res/layouts/dialogs"
+                    "src/main/res/layouts/dialogs",
+                    "src/main/res/layouts/skeleton"
                 )
             )
         }
@@ -64,4 +68,11 @@ dependencies {
     implementation("com.github.Dimezis:BlurView:version-3.2.0")
     implementation("com.android.volley:volley:1.2.1")
     implementation("com.google.code.gson:gson:2.13.1")
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+    implementation("com.facebook.shimmer:shimmer:0.5.0")
+    implementation("org.osmdroid:osmdroid-android:6.1.20")
+    implementation("org.maplibre.gl:android-sdk:13.6.1")
+    implementation("androidx.preference:preference:1.2.1")
+    implementation("com.google.android.gms:play-services-location:21.3.0")
+
 }

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    app:cardBackgroundColor="@color/card_background"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="4dp"
+    app:cardUseCompatPadding="false"
+    app:strokeWidth="1dp"
+    app:strokeColor="#E4EEE5"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="14dp">
+
+        <!-- Route Locations -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Route Indicator -->
+            <LinearLayout
+                android:layout_width="25dp"
+                android:layout_height="85dp"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@drawable/start_location_green_dot"/>
+
+                <ImageView
+                    android:layout_width="7dp"
+                    android:layout_height="43dp"
+                    android:layout_marginVertical="2dp"
+                    android:src="@drawable/route_connector_dashed"
+                    android:scaleType="fitXY"/>
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@drawable/destination_red_dot"/>
+            </LinearLayout>
+
+            <!-- Route Text -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="8dp">
+
+                <TextView
+                    android:id="@+id/historyStartLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Satellite, Ahmedabad"
+                    android:textColor="@color/text_primary"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:maxLines="2"
+                    android:ellipsize="end"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="22dp"/>
+
+                <TextView
+                    android:id="@+id/historyDestinationLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Navrangpura, Ahmedabad"
+                    android:textColor="@color/text_primary"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:maxLines="2"
+                    android:ellipsize="end"/>
+            </LinearLayout>
+
+            <!-- Status -->
+            <TextView
+                android:id="@+id/historyRouteStatus"
+                android:layout_width="100dp"
+                android:layout_height="32dp"
+                android:gravity="center"
+                android:text="Started"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_brand"
+                android:background="@drawable/status_started_bg"
+                android:layout_marginStart="4dp"/>
+        </LinearLayout>
+
+        <!-- Divider -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="10dp"/>
+
+        <!-- Route Meta -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/calendar"/>
+
+            <TextView
+                android:id="@+id/historyRouteDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="9dp"
+                android:text="Today · 9:41 AM"
+                android:textColor="@color/text_primary"
+                android:textSize="13sp"
+                android:maxLines="1"/>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="25dp"
+                android:background="@color/divider"
+                android:layout_marginHorizontal="12dp"/>
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/current_location"/>
+
+            <TextView
+                android:id="@+id/historyRouteDistance"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="6.4 km"
+                android:textColor="@color/text_primary"
+                android:textSize="13sp"
+                android:gravity="center_vertical"
+                android:maxLines="1"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

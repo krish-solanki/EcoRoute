@@ -1,7 +1,9 @@
 package com.example.ecoroute.ui.fragments;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
@@ -21,6 +23,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.ecoroute.R;
+import com.example.ecoroute.core.constants.DataBaseConstant;
 import com.example.ecoroute.databinding.FragmentOnBoardingPrivacyBinding;
 import com.example.ecoroute.ui.activity.BottomNavMenu;
 import com.google.android.gms.common.api.ResolvableApiException;
@@ -38,6 +41,7 @@ public class OnBoardingPrivacyFragment extends Fragment {
     private long animationStartTime;
     private static final long MIN_ANIMATION_TIME = 800, LOCATION_TIMEOUT = 20000;
     private Runnable timeoutRunnable;
+    private SharedPreferences sharedPreferences;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,6 +65,9 @@ public class OnBoardingPrivacyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentOnBoardingPrivacyBinding.inflate(inflater, container, false);
         initializeBlur();
+
+        sharedPreferences = requireActivity().getSharedPreferences(DataBaseConstant.DATABASE_NAME, Context.MODE_PRIVATE);
+
         binding.btnAllowLocation.setOnClickListener(v -> startLocationFlow());
 
         Fragment parent = getParentFragment();
@@ -112,6 +119,12 @@ public class OnBoardingPrivacyFragment extends Fragment {
                 if (location == null) return;
                 stopLocationUpdates();
                 finishLocationAnimation(() -> {
+
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putLong(DataBaseConstant.CURRENT_POSITION_LATITUDE, Double.doubleToRawLongBits(location.getLatitude()));
+                    editor.putLong(DataBaseConstant.CURRENT_POSITION_LONGITUDE, Double.doubleToRawLongBits(location.getLongitude()));
+                    editor.apply();
+
                     Intent intent = new Intent(requireActivity(), BottomNavMenu.class);
                     intent.putExtra("latitude", location.getLatitude());
                     intent.putExtra("longitude", location.getLongitude());

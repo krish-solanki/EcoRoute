@@ -1,3 +1,4 @@
+
 package com.example.ecoroute.ui.adapter;
 
 import android.os.Bundle;
@@ -7,9 +8,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import com.example.ecoroute.ui.fragments.HistoryFragment;
 import com.example.ecoroute.ui.fragments.HomeFragment;
+import com.example.ecoroute.ui.fragments.MapFragment;
 
 public class BottomNavigationAdapter extends FragmentStateAdapter {
+
     private final double latitude, longitude;
 
     public BottomNavigationAdapter(FragmentActivity activity, double latitude, double longitude) {
@@ -27,18 +31,23 @@ public class BottomNavigationAdapter extends FragmentStateAdapter {
                 bundle.putDouble("latitude", latitude);
                 bundle.putDouble("longitude", longitude);
 
-                HomeFragment fragment = new HomeFragment();
-                fragment.setArguments(bundle);
-                return fragment;
+                HomeFragment homeFragment = new HomeFragment();
+                homeFragment.setArguments(bundle);
+                return homeFragment;
+
             case 1:
-                return new HomeFragment();
+                return new MapFragment();
+
             case 2:
-                return new HomeFragment();
+                return new HistoryFragment();
+
             case 3:
-                return new HomeFragment();
+                return new MapFragment();
+
             default:
                 return new HomeFragment();
-        }    }
+        }
+    }
 
     @Override
     public int getItemCount() {

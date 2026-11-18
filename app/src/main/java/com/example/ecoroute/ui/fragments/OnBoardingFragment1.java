@@ -1,5 +1,6 @@
 package com.example.ecoroute.ui.fragments;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,9 +26,19 @@ public class OnBoardingFragment1 extends Fragment {
                     .replace(R.id.onBoardingScreenFragmentContainer, new OnBoardingFragment2())
                     .commit();
         });
+        playVideo();
         return binding.getRoot();
     }
 
+    private void playVideo() {
+        Uri videoUri = Uri.parse("android.resource://" + requireContext().getPackageName() + "/" + R.raw.trust_bg_video);
+        binding.backgroundVideo.setVideoURI(videoUri);
+        binding.backgroundVideo.setOnPreparedListener(mp -> {
+            mp.setLooping(true);
+            mp.setVolume(0f, 0f);
+            binding.backgroundVideo.start();
+        });
+    }
 
     @Override
     public void onDestroyView() {
